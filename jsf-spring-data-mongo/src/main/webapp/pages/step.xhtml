@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template/template_interno.xhtml">
+
+	<ui:define name="body-header">
+		<h1>
+			Step <small>Consulta</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#">Manutenção</a></li>
+			<li class="active">Step</li>
+		</ol>
+	</ui:define>
+	
+	<ui:define name="body">
+		
+		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/timepicker/bootstrap-timepicker.min.css" />
+		
+		<h:form id="formStep">
+		
+			<p:messages globalOnly="true" closable="true" />
+		
+			<t:saveState id="operation" value="#{stepView.operation}" />
+			<t:saveState id="step" value="#{stepView.step}" />
+			<t:saveState id="listProcess" value="#{stepView.listProcess}" />
+		
+			<h:panelGroup rendered="#{stepView.operation.code eq 1}">
+				<ui:include src="/pages/step_consult.xhtml" />
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{stepView.operation.code eq 4}">
+				<ui:include src="/pages/step_include.xhtml" />
+			</h:panelGroup>
+			
+		</h:form>
+	
+	<script src="#{request.contextPath}/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"/>
+		
+	</ui:define>
+
+</ui:composition>

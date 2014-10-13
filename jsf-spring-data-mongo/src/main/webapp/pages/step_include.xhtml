@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"> 
+
+	<div class="box box-primary">
+				
+		<div class="box-header">
+			<h3 class="box-title">
+				Dados para inclusão
+			</h3>
+		</div>
+		
+		<div class="box-body">
+			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<h:outputLabel value="ID" 
+								   for="idNewID"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewID" 
+									 styleClass="form-control"
+									 value="#{stepView.step.id}" />
+					</div>
+				</div>
+				
+				<div class="form-group col-md-6">
+					<h:outputLabel value="Process ID" 
+								   for="idNewProcessId"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-list"></i>
+						</div>
+						<t:selectOneMenu value="#{stepView.step.processId}" styleClass="form-control">
+							<f:selectItems value="#{stepView.listProcess}"
+										   var="process"
+								 		   itemLabel="#{process.id}"
+								 		   itemValue="#{process.id}"/>
+						</t:selectOneMenu>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<h:outputLabel value="Reader" 
+								   for="idNewReader"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewReader" 
+									 styleClass="form-control"
+									 value="#{stepView.step.reader}" />
+					</div>
+				</div>
+				
+				<div class="form-group col-md-6">
+					<h:outputLabel value="Process" 
+								   for="idNewProcess"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewProcess" 
+									 styleClass="form-control"
+									 value="#{stepView.step.process}" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<h:outputLabel value="Writer" 
+								   for="idNewWriter"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewWriter" 
+									 styleClass="form-control"
+									 value="#{stepView.step.writer}" />
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="box-footer">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn-group pull-right">
+						<p:commandLink value="Voltar" 
+									   styleClass="btn btn-default" 
+									   action="#{stepView.backToSearchOperation()}"
+									   update="formStep" />
+						<p:commandLink value="Limpar" 
+									   styleClass="btn btn-default"
+									   action="#{stepView.erase()}"
+									   update="formStep" />
+						<p:commandLink value="Salvar" 
+									   styleClass="btn btn-primary"
+									   action="#{stepView.saveStep()}"
+									   update="formStep" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+</ui:composition>

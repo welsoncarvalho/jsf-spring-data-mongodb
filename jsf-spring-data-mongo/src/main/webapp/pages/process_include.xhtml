@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"> 
+
+	<div class="box box-primary">
+				
+		<div class="box-header">
+			<h3 class="box-title">
+				Dados para inclusão
+			</h3>
+		</div>
+		
+		<div class="box-body">
+			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<h:outputLabel value="ID" 
+								   for="idNewID"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewID" 
+									 styleClass="form-control"
+									 value="#{processView.process.id}" />
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<div class="form-group bootstrap-timepicker">
+						<h:outputLabel value="Horário de execução"
+									   for="idHorarioExecucao" />
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+							<h:inputText id="idHorarioExecucao"
+										 styleClass="form-control timepicker" 
+										 value="#{processView.process.timeExecution}"/>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="form-group col-md-12">
+					<h:outputLabel value="Descrição" 
+								   for="idNewDescricao"/>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-tag"></i>
+						</div>
+						<h:inputText id="idNewDescricao" 
+									 styleClass="form-control"
+									 value="#{processView.process.description}" />
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="form-group col-md-8">
+					<h:outputLabel value="Dias de execução"
+								   for="idDiasExecução" />
+					<h:selectManyMenu styleClass="form-control chosen-select">
+						<f:selectItem itemLabel="Dom" itemValue="1"/>
+						<f:selectItem itemLabel="Seg" itemValue="2"/>
+						<f:selectItem itemLabel="Ter" itemValue="3"/>
+						<f:selectItem itemLabel="Qua" itemValue="4"/>
+						<f:selectItem itemLabel="Qui" itemValue="5"/>
+						<f:selectItem itemLabel="Sex" itemValue="6"/>
+						<f:selectItem itemLabel="Sab" itemValue="7"/>
+					</h:selectManyMenu>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="form-group">
+						<h:outputLabel value="" />
+						<div class="checkbox">
+							<label>
+								<h:selectBooleanCheckbox id="idParalelo" 
+														 value="#{processView.process.isParalel}" />
+								<h:outputLabel value="Paralelo?" 
+											   for="idParalelo"/>
+							</label>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<div class="box-footer">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn-group">
+						<p:commandLink value="Steps"
+									   styleClass="btn btn-info" />
+					</div>
+				
+					<div class="btn-group pull-right">
+						<p:commandLink value="Voltar" 
+									   styleClass="btn btn-default" 
+									   action="#{processView.backToSearchOperation()}"
+									   update="formProcess" />
+						<p:commandLink value="Limpar" 
+									   styleClass="btn btn-default"
+									   action="#{processView.erase()}"
+									   update="formProcess" />
+						<p:commandLink value="Salvar" 
+									   styleClass="btn btn-primary"
+									   action="#{processView.saveProcess()}"
+									   update="formProcess" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$('.timepicker').timepicker({
+				showInputs: false
+			});
+
+			$('.chosen-select').chosen({});
+			
+		});
+
+	</script>
+	
+	<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+          			<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Selecione os dias para execução</h4>
+                    </div>
+                    
+                    <div class="modal-body align-center">
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idDomingo" />
+                    			<h:outputLabel value="Domingo" for="idDomingo" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idSegunda" />
+                    			<h:outputLabel value="Segunda" for="idSegunda" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idTerca" />
+                    			<h:outputLabel value="Terça" for="idTerca" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idQuarta" />
+                    			<h:outputLabel value="Quarta" for="idQuarta" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idQuinta" />
+                    			<h:outputLabel value="Quinta" for="idQuinta" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idSexta" />
+                    			<h:outputLabel value="Sexta" for="idSexta" />
+                    		</label>
+                    	</div>
+                    	
+                    	<div class="checkbox">
+                    		<label>
+                    			<h:selectBooleanCheckbox id="idSabado" />
+                    			<h:outputLabel value="Sábado" for="idSabado" />
+                    		</label>
+                    	</div>
+                    	
+                    </div>
+                    
+                    <div class="modal-footer clearfix">
+                    	<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+	
+</ui:composition>

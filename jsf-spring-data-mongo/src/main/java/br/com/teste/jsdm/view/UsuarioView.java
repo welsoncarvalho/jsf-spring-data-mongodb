@@ -1,6 +1,5 @@
 package br.com.teste.jsdm.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,35 +7,54 @@ import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 
 import br.com.teste.jsdm.model.Usuario;
 import br.com.teste.jsdm.service.UsuarioService;
 
-@ManagedBean(name = "usuarioView")
-@Scope("session")
+// TODO: Auto-generated Javadoc
+/**
+ * DOCUMENT ME!.
+ *
+ * @author Welson
+ */
 @Controller
-public class UsuarioView {
+@Scope("session")
+@ManagedBean(name = "usuarioView")
+public class UsuarioView extends BaseView {
 
+	/** A constante serialVersionUID. */
+	private static final long serialVersionUID = 6863441789072640706L;
+
+	/** usuarios. */
 	private List<Usuario> usuarios;
 	
-	@Autowired
-	private MongoOperations mongoTemplate;
-	
+	/** usuario service. */
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	/**
+	 * Inits the.
+	 */
 	@PostConstruct
 	public void init() {
-		setUsuarios(mongoTemplate.find(new Query(), Usuario.class));
+		setUsuarios(usuarioService.listar());
 	}
 	
+	/**
+	 * Obtém usuarios.
+	 *
+	 * @return usuarios
+	 */
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 	
+	/**
+	 * Define usuarios.
+	 *
+	 * @param usuarios novo usuarios
+	 */
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}

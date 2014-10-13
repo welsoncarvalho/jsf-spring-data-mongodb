@@ -1,4 +1,4 @@
-package br.com.teste.jsdm.service;
+package br.com.teste.jsdm.dao;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import br.com.teste.jsdm.model.Usuario;
  *
  * @author Welson
  */
-public interface UsuarioService extends Service {
+public interface UsuarioDao extends Dao<Usuario> {
 
 	/**
 	 * Listar.

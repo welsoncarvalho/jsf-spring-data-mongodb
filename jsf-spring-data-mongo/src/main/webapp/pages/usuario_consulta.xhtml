@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
 	template="../template/template_interno.xhtml">
 
 	<ui:define name="body-header">
@@ -72,33 +73,35 @@
 				
 				<div class="box-body">
 				
-					<h:dataTable id="resultadoUsuario"
+					<p:dataTable id="resultadoUsuario"
 								 value="#{usuarioView.usuarios}"
 								 var="usuario"
-								 styleClass="table table-bordered">
+								 tableStyleClass="table table-bordered"
+								 style="border: 0px solid black !important;"
+								 tableStyle="border: 0px solid black !important;">
 						
-						<h:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Nome" />
 							</f:facet>
 							<h:outputText value="#{usuario.nome}" />
-						</h:column>
+						</p:column>
 						
-						<h:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Login" />
 							</f:facet>
 							<h:outputText value="#{usuario.login}" />
-						</h:column>
+						</p:column>
 						
-						<h:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Email" />
 							</f:facet>
 							<h:outputText value="#{usuario.email}" />
-						</h:column>
+						</p:column>
 									 
-					</h:dataTable>
+					</p:dataTable>
 				
 				</div>
 				
